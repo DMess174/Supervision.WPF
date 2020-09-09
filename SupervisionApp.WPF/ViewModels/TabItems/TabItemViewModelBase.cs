@@ -11,6 +11,7 @@ namespace SupervisionApp.WPF.ViewModels.TabItems
         public MainViewModel MainViewModel;
         public ITabItemViewModelNavigator TabViewModelNavigator;
         public bool IsBusy { get; set; }
+        public string Header { get; set; }
 
         public TabItemViewModelBase(IAuthenticator authenticator,
             string header, MainViewModel mainViewModel, ITabItemViewModelNavigator tabViewModelNavigator) : base(authenticator)
@@ -21,6 +22,6 @@ namespace SupervisionApp.WPF.ViewModels.TabItems
             TabViewModelNavigator = tabViewModelNavigator;
         }
 
-        public string Header { get; set; }
+        public abstract bool CanClosed();
     }
 }

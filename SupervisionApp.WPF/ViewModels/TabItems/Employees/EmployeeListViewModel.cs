@@ -38,5 +38,7 @@ namespace SupervisionApp.WPF.ViewModels.TabItems.Employees
                 }
             }
         }
+
+        public override bool CanClosed() => true;
     }
 }

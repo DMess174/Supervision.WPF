@@ -57,7 +57,7 @@
                 Margin="5"
                 Padding="10,5"
                 HorizontalAlignment="Right"
-                Command="{Binding CloseTabCommand}"
+                Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}, Path=DataContext.CloseTabCommand}"
                 Content="Закрыть"
                 FontFamily="{StaticResource FranklinGothicBookBold}"
                 Style="{StaticResource MaterialDesignFlatMidBgButton}" />

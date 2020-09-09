@@ -29,5 +29,7 @@ namespace SupervisionApp.WPF.ViewModels.TabItems.Employees
 
             return vm;
         }
+
+        public override bool CanClosed() => true;
     }
 }

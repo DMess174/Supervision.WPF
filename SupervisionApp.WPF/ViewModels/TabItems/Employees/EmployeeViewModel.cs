@@ -47,5 +47,7 @@ namespace SupervisionApp.WPF.ViewModels.TabItems.Employees
                 IsBusy = false;
             }
         }
+
+        public override bool CanClosed() => true;
     }
 }
