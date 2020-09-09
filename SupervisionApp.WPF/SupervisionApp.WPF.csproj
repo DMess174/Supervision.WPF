@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\Backgrounds\login-background.jpg" />
+    <None Remove="Images\Logo\icon.ico" />
+    <None Remove="Images\nophoto.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignThemes" Version="3.1.3" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.7" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.7" />
+    <PackageReference Include="PropertyChanged.Fody" Version="3.2.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Supervision.CommonModel\Supervision.CommonModel.csproj" />
+    <ProjectReference Include="..\SupervisionApp.EF\SupervisionApp.EF.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Backgrounds\login-background.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Logo\icon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\nophoto.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
