@@ -195,6 +195,7 @@
                         Margin="30,0"
                         Background="{StaticResource WordBlueBrush}"
                         Command="{Binding LoginFactoryCommand}"
+                        CommandParameter="{Binding Factory}"
                         IsDefault="True"
                         Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         ToolTip="Авторизация">

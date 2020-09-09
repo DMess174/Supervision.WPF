@@ -58,7 +58,6 @@
                 Padding="10,5"
                 HorizontalAlignment="Right"
                 Command="{Binding CloseTabCommand}"
-                CommandParameter="{Binding MainViewModel.CurrentTab}"
                 Content="Закрыть"
                 FontFamily="{StaticResource FranklinGothicBookBold}"
                 Style="{StaticResource MaterialDesignFlatMidBgButton}" />

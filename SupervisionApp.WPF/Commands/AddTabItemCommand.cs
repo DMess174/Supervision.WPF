@@ -1,13 +1,12 @@
 ﻿using SupervisionApp.ModelAPI;
+using SupervisionApp.WPF.Commands.Base;
 using SupervisionApp.WPF.Models.ViewModelNavigators;
 using SupervisionApp.WPF.ViewModels;
 using SupervisionApp.WPF.ViewModels.Factories;
-using System;
-using System.Windows.Input;
 
 namespace SupervisionApp.WPF.Commands
 {
-    public class AddTabItemCommand : ICommand
+    public class AddTabItemCommand : CommandBase
     {
         private readonly MainViewModel _mainViewModel;
         private readonly ITabItemViewModelFactory _tabViewModelFactory;
@@ -18,14 +17,9 @@ namespace SupervisionApp.WPF.Commands
             _mainViewModel = mainViewModel;
         }
 
-        public event EventHandler CanExecuteChanged;
+        public override bool CanExecute(object parameter) => true;
 
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
-
-        public void Execute(object parameter)
+        public override void Execute(object parameter)
         {
             if (parameter is object[] values)
             {

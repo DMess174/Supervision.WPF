@@ -1,11 +1,11 @@
-﻿using SupervisionApp.WPF.Models.ViewModelNavigators;
+﻿using SupervisionApp.WPF.Commands.Base;
+using SupervisionApp.WPF.Models.ViewModelNavigators;
 using SupervisionApp.WPF.ViewModels.Factories;
 using System;
-using System.Windows.Input;
 
 namespace SupervisionApp.WPF.Commands
 {
-    public class UpdateCurrentViewModelCommand : ICommand
+    public class UpdateCurrentViewModelCommand : CommandBase
     {
         private readonly IViewModelNavigator _navigator;
         private readonly IViewModelFactory _viewModelFactory;
@@ -16,14 +16,9 @@ namespace SupervisionApp.WPF.Commands
             _viewModelFactory = viewModelFactory;
         }
 
-        public event EventHandler CanExecuteChanged;
+        public override bool CanExecute(object parameter) => true;
 
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
-
-        public void Execute(object parameter)
+        public override void Execute(object parameter)
         {
             if (parameter is ViewType viewType)
             {

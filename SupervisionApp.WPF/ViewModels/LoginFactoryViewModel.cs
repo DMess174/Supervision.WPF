@@ -37,7 +37,7 @@ namespace SupervisionApp.WPF.ViewModels
         {
             _factoryService = factoryService;
             MessageViewModel = new MessageViewModel(authenticator);
-            LoginFactoryCommand = new LoginFactoryCommand(authenticator, entryRenavigator, this);
+            LoginFactoryCommand = new LoginFactoryCommand(authenticator, entryRenavigator);
             ViewLoginCommand = new LogoutCommand(authenticator, loginRenavigator);
         }
 

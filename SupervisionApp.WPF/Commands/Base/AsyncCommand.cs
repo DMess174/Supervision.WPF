@@ -4,7 +4,7 @@ using System.Windows.Input;
 
 namespace SupervisionApp.WPF.Commands.Base
 {
-    public abstract class AsyncCommand : ICommand
+    public abstract class AsyncCommand : CommandBase
     {
         private bool _isExecuting;
         public bool IsExecuting
@@ -20,14 +20,14 @@ namespace SupervisionApp.WPF.Commands.Base
             }
         }
 
-        public event EventHandler CanExecuteChanged;
+        public new event EventHandler CanExecuteChanged;
 
-        public bool CanExecute(object parameter)
+        public override bool CanExecute(object parameter)
         {
             return !IsExecuting;
         }
 
-        public async void Execute(object parameter)
+        public override async void Execute(object parameter)
         {
             IsExecuting = true;
 

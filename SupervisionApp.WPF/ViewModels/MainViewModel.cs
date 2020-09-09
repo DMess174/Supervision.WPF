@@ -49,7 +49,7 @@ namespace SupervisionApp.WPF.ViewModels
 
             OpenTabCommand = new AddTabItemCommand(_tabViewModelFactory, this);
 
-            CloseTabCommand = new CloseTabItemCommand(TabViewModelNavigator, this);
+            CloseTabCommand = new CloseTabItemCommand(TabViewModelNavigator);
 
             TabViewModelNavigator.TabItems = new ObservableCollection<TabItemViewModelBase>()
             {

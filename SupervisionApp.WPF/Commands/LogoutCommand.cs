@@ -1,12 +1,10 @@
-﻿using SupervisionApp.CommonModel.Models.Factories;
+﻿using SupervisionApp.WPF.Commands.Base;
 using SupervisionApp.WPF.Models.Authenticators;
 using SupervisionApp.WPF.Models.ViewModelNavigators;
-using System;
-using System.Windows.Input;
 
 namespace SupervisionApp.WPF.Commands
 {
-    public class LogoutCommand : ICommand
+    public class LogoutCommand : CommandBase
     {
         private readonly IViewModelRenavigator _renavigator;
         private readonly IAuthenticator _authenticator;
@@ -17,14 +15,9 @@ namespace SupervisionApp.WPF.Commands
             _renavigator = renavigator;
         }
 
-        public event EventHandler CanExecuteChanged;
+        public override bool CanExecute(object parameter) => true;
 
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
-
-        public void Execute(object parameter)
+        public override void Execute(object parameter)
         {
             _authenticator.Logout();
             _renavigator.Renavigate();
