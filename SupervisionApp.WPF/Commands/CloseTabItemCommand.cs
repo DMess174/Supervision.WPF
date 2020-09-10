@@ -7,12 +7,10 @@ namespace SupervisionApp.WPF.Commands
     public class CloseTabItemCommand : CommandBase
     {
         private readonly ITabItemViewModelNavigator _tabViewModelNavigator;
-        private readonly TabItemViewModelBase _tabItemViewModel;
 
-        public CloseTabItemCommand(ITabItemViewModelNavigator tabViewModelNavigator, TabItemViewModelBase tabItemViewModel = null)
+        public CloseTabItemCommand(ITabItemViewModelNavigator tabViewModelNavigator)
         {
             _tabViewModelNavigator = tabViewModelNavigator;
-            _tabItemViewModel = tabItemViewModel;
         }
 
         public override bool CanExecute(object parameter)
@@ -23,7 +21,7 @@ namespace SupervisionApp.WPF.Commands
         public override void Execute(object parameter)
         {
             var index = _tabViewModelNavigator.TabItems.IndexOf(_tabViewModelNavigator.CurrentTab);
-            if (_tabItemViewModel.CanClosed())
+            if (_tabViewModelNavigator.CurrentTab.CanClosed())
             {
                 _tabViewModelNavigator.CloseTab(_tabViewModelNavigator.CurrentTab);
                 if (index < _tabViewModelNavigator.TabItems.Count && index != 0)
