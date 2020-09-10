@@ -177,33 +177,10 @@
                     Height="auto"
                     Margin="0,30,0,0"
                     HorizontalAlignment="Center"
-                    Background="{StaticResource WordBlueBrush}"
                     Command="{Binding LoginCommand}"
                     IsDefault="True"
-                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    Style="{StaticResource LoginButton}"
                     ToolTip="Авторизация">
-                    <Button.Content>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <materialDesign:PackIcon
-                                Grid.Column="0"
-                                VerticalAlignment="Stretch"
-                                Kind="Login">
-                                <materialDesign:PackIcon.RenderTransform>
-                                    <ScaleTransform CenterY="8" ScaleX="2" ScaleY="2" />
-                                </materialDesign:PackIcon.RenderTransform>
-                            </materialDesign:PackIcon>
-                            <TextBlock
-                                Grid.Column="1"
-                                Margin="20,0"
-                                Padding="10"
-                                FontSize="{StaticResource FontSizeXXLarge}"
-                                Text="Вход" />
-                        </Grid>
-                    </Button.Content>
                 </Button>
             </Grid>
         </Grid>

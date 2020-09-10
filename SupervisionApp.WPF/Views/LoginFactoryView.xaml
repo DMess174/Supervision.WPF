@@ -160,32 +160,10 @@
                         Grid.Column="2"
                         Height="auto"
                         Margin="30,0"
+                        IsCancel="True"
                         Command="{Binding ViewLoginCommand}"
-                        IsDefault="True"
-                        Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                        Style="{StaticResource LogoutButton}"
                         ToolTip="Назад">
-                        <Button.Content>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <materialDesign:PackIcon
-                                    Grid.Column="0"
-                                    VerticalAlignment="Stretch"
-                                    Kind="ExitRun">
-                                    <materialDesign:PackIcon.RenderTransform>
-                                        <ScaleTransform CenterY="8" ScaleX="2" ScaleY="2" />
-                                    </materialDesign:PackIcon.RenderTransform>
-                                </materialDesign:PackIcon>
-                                <TextBlock
-                                    Grid.Column="1"
-                                    Margin="20,0"
-                                    Padding="10"
-                                    FontSize="{StaticResource FontSizeXXLarge}"
-                                    Text="Назад" />
-                            </Grid>
-                        </Button.Content>
                     </Button>
 
                     <Button
@@ -193,34 +171,11 @@
                         Grid.Column="2"
                         Height="auto"
                         Margin="30,0"
-                        Background="{StaticResource WordBlueBrush}"
                         Command="{Binding LoginFactoryCommand}"
                         CommandParameter="{Binding Factory}"
                         IsDefault="True"
-                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        Style="{StaticResource LoginButton}"
                         ToolTip="Авторизация">
-                        <Button.Content>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <materialDesign:PackIcon
-                                    Grid.Column="0"
-                                    VerticalAlignment="Stretch"
-                                    Kind="Login">
-                                    <materialDesign:PackIcon.RenderTransform>
-                                        <ScaleTransform CenterY="8" ScaleX="2" ScaleY="2" />
-                                    </materialDesign:PackIcon.RenderTransform>
-                                </materialDesign:PackIcon>
-                                <TextBlock
-                                    Grid.Column="1"
-                                    Margin="20,0"
-                                    Padding="10"
-                                    FontSize="{StaticResource FontSizeXXLarge}"
-                                    Text="Вход" />
-                            </Grid>
-                        </Button.Content>
                     </Button>
                 </StackPanel>
             </Grid>

@@ -1,4 +1,7 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
 
     <ResourceDictionary.MergedDictionaries>
         <!--  Order is important  -->
@@ -86,6 +89,147 @@
         </Style.Triggers>
 
     </Style>
+
+    <!--  Regular button  -->
+    <Style
+        x:Key="RegularButton"
+        BasedOn="{StaticResource MaterialDesignFlatMidBgButton}"
+        TargetType="Button">
+        <Setter Property="FontFamily" Value="{StaticResource FranklinGothicBookBold}" />
+        <Setter Property="Background" Value="{StaticResource WordBlueBrush}" />
+    </Style>
+
+    <!--  Danger button  -->
+    <Style
+        x:Key="DangerButton"
+        BasedOn="{StaticResource MaterialDesignFlatAccentBgButton}"
+        TargetType="Button">
+        <Setter Property="FontFamily" Value="{StaticResource FranklinGothicBookBold}" />
+    </Style>
+
+    <!--  LoginButton  -->
+    <Style
+        x:Key="LoginButton"
+        BasedOn="{StaticResource RegularButton}"
+        TargetType="Button">
+        <Setter Property="Content">
+            <Setter.Value>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon
+                        Grid.Column="0"
+                        VerticalAlignment="Stretch"
+                        Kind="Login">
+                        <materialDesign:PackIcon.RenderTransform>
+                            <ScaleTransform CenterY="8" ScaleX="2" ScaleY="2" />
+                        </materialDesign:PackIcon.RenderTransform>
+                    </materialDesign:PackIcon>
+                    <TextBlock
+                        Grid.Column="1"
+                        Margin="20,0"
+                        Padding="10"
+                        FontSize="{StaticResource FontSizeXXLarge}"
+                        Text="Вход" />
+                </Grid>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--  LogoutButton  -->
+    <Style
+        x:Key="LogoutButton"
+        BasedOn="{StaticResource DangerButton}"
+        TargetType="Button">
+        <Setter Property="Content">
+            <Setter.Value>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon
+                        Grid.Column="0"
+                        VerticalAlignment="Stretch"
+                        Kind="ExitRun">
+                        <materialDesign:PackIcon.RenderTransform>
+                            <ScaleTransform CenterY="8" ScaleX="2" ScaleY="2" />
+                        </materialDesign:PackIcon.RenderTransform>
+                    </materialDesign:PackIcon>
+                    <TextBlock
+                        Grid.Column="1"
+                        Margin="20,0"
+                        Padding="10"
+                        FontSize="{StaticResource FontSizeXXLarge}"
+                        Text="Выход" />
+                </Grid>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--  Save Item Button  -->
+    <Style
+        x:Key="SaveItemButton"
+        BasedOn="{StaticResource RegularButton}"
+        TargetType="Button">
+        <Setter Property="Content">
+            <Setter.Value>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon
+                        Grid.Column="0"
+                        VerticalAlignment="Stretch"
+                        Kind="ContentSave">
+                        <materialDesign:PackIcon.RenderTransform>
+                            <ScaleTransform CenterY="8" ScaleX="1" ScaleY="1" />
+                        </materialDesign:PackIcon.RenderTransform>
+                    </materialDesign:PackIcon>
+                    <TextBlock
+                        Grid.Column="1"
+                        Margin="5,0"
+                        FontSize="{StaticResource FontSizeLarge}"
+                        Text="Сохранить" />
+                </Grid>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--  Close Tab Button  -->
+    <Style
+        x:Key="TabCloseButton"
+        BasedOn="{StaticResource DangerButton}"
+        TargetType="Button">
+        <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}, Path=DataContext.CloseTabCommand}"/>
+        <Setter Property="Content">
+            <Setter.Value>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon
+                        Grid.Column="0"
+                        VerticalAlignment="Stretch"
+                        Kind="LocationExit">
+                        <materialDesign:PackIcon.RenderTransform>
+                            <ScaleTransform CenterY="8" ScaleX="1" ScaleY="1" />
+                        </materialDesign:PackIcon.RenderTransform>
+                    </materialDesign:PackIcon>
+                    <TextBlock
+                        Grid.Column="1"
+                        Margin="5,0"
+                        FontSize="{StaticResource FontSizeLarge}"
+                        Text="Закрыть" />
+                </Grid>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 
     <!--  Regular button  -->
     <!--

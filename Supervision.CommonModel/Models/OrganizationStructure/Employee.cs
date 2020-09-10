@@ -36,6 +36,6 @@ namespace SupervisionApp.CommonModel.Models.OrganizationStructure
 
         public ICollection<EmployeeFactories> EmployeeFactories { get; set; }
 
-        public override string ToString() => $"{LastName} {FirstName?.Trim()[0]}.{Patronymic.Trim()[0]}.\n{Post?.Name}";
+        public override string ToString() => $"{LastName ?? string.Empty} {FirstName?.Trim()[0]}.{Patronymic?.Trim()[0]}.\n{Post?.Name}";
     }
 }
