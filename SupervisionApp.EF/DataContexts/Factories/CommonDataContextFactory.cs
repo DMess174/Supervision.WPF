@@ -4,7 +4,6 @@
     {
         public CommonDataContextFactory(string connectionString) : base(connectionString)
         {
-
         }
     }
 }

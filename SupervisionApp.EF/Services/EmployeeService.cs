@@ -11,11 +11,8 @@ namespace SupervisionApp.EF.Services
 {
     public class EmployeeService : DataService<Employee>, IEmployeeService
     {
-        private readonly CommonDataContextFactory _contextFactory;
-
         public EmployeeService(CommonDataContextFactory contextFactory) : base(contextFactory)
         {
-            _contextFactory = contextFactory;
         }
 
         public override async Task<Employee> GetByIdAsync(int id)

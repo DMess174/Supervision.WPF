@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace SupervisionApp.CommonModel.Services
@@ -12,5 +14,7 @@ namespace SupervisionApp.CommonModel.Services
         Task<T> UpsertAsync(T entity);
 
         Task<bool> DeleteAsync(int id);
+
+        //Task<T> GetSomeItem(Expression<Func<T, bool>> predicate);
     }
 }

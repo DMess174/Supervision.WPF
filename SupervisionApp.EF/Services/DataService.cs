@@ -4,14 +4,17 @@ using SupervisionApp.CommonModel.Services;
 using SupervisionApp.EF.DataContexts;
 using SupervisionApp.EF.DataContexts.Factories;
 using SupervisionApp.ModelAPI;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace SupervisionApp.EF.Services
 {
     public abstract class DataService<T> : IDataService<T> where T : BaseEntity
     {
-        private readonly CommonDataContextFactory _contextFactory;
+        protected readonly CommonDataContextFactory _contextFactory;
 
         public DataService(CommonDataContextFactory contextFactory)
         {
@@ -34,26 +37,7 @@ namespace SupervisionApp.EF.Services
             }
         }
 
-        private async Task<T> CreateAsync(T entity)
-        {
-            using (CommonDataContext context = _contextFactory.CreateDbContext())
-            {
-                EntityEntry<T> createdResult = await context.Set<T>().AddAsync(entity);
-                await context.SaveChangesAsync();
-                return createdResult.Entity;
-            }
-        }
-
-        private async Task<T> UpdateAsync(T entity)
-        {
-            using (CommonDataContext context = _contextFactory.CreateDbContext())
-            {
-                context.Entry(entity).State = EntityState.Modified;
-                await context.SaveChangesAsync();
-
-                return entity;
-            }
-        }
+        
 
         public async Task<bool> DeleteAsync(int id)
         {
@@ -66,6 +50,15 @@ namespace SupervisionApp.EF.Services
                 return true;
             }
         }
+
+        //public async Task<T> GetSomeItem(Expression<Func<T, bool>> predicate)
+        //{
+        //    using (CommonDataContext context = _contextFactory.CreateDbContext())
+        //    {
+        //        T entity = await context.Set<T>().FirstOrDefaultAsync(predicate);
+        //        return entity;
+        //    }
+        //}
 
         public async Task<T> UpsertAsync(T entity)
         {
@@ -82,5 +75,29 @@ namespace SupervisionApp.EF.Services
                 return entity;
             }
         }
+
+        private async Task<T> CreateAsync(T entity)
+        {
+            using (CommonDataContext context = _contextFactory.CreateDbContext())
+            {
+                EntityEntry<T> createdResult = await context.Set<T>().AddAsync(entity);
+                await context.SaveChangesAsync();
+                return createdResult.Entity;
+            }
+        }
+
+        private async Task<T> UpdateAsync(T entity)
+        {
+            using (CommonDataContext context = _contextFactory.CreateDbContext())
+            {
+                context.Attach(entity);
+                context.Entry(entity).State = EntityState.Modified;
+                await context.SaveChangesAsync();
+
+                return entity;
+            }
+        }
+
+ 
     }
 }

@@ -12,18 +12,15 @@ namespace SupervisionApp.EF.Services.FactoryService
 {
     public class FactoryService : DataService<Factory>, IFactoryService
     {
-        private readonly CommonDataContextFactory _contextFactory;
-
         public FactoryService(CommonDataContextFactory contextFactory) : base(contextFactory)
         {
-            _contextFactory = contextFactory;
         }
 
         public async Task<IEnumerable<Factory>> GetAllIncludeAsync()
         {
             using (CommonDataContext context = _contextFactory.CreateDbContext())
             {
-                return await context.Factory
+                return await context.Factories
                     .Include(i => i.ProductTypes)
                     .ThenInclude(i => i.ProductType)
                     .ToListAsync();
@@ -34,7 +31,7 @@ namespace SupervisionApp.EF.Services.FactoryService
         {
             using (CommonDataContext context = _contextFactory.CreateDbContext())
             {
-                return await context.Factory
+                return await context.Factories
                     .Include(i => i.ProductTypes)
                     .ThenInclude(i => i.ProductType)
                     .Include(i => i.EmployeeFactories)

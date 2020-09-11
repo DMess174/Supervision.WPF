@@ -3,11 +3,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Supervision.CommonModel.Services;
 using SupervisionApp.CommonModel.Models.OrganizationStructure;
 using SupervisionApp.CommonModel.Services;
 using SupervisionApp.EF.DataContexts;
 using SupervisionApp.EF.DataContexts.Factories;
-using SupervisionApp.EF.Services.Mocks;
+using SupervisionApp.EF.Services;
+using SupervisionApp.EF.Services.FactoryService;
 using SupervisionApp.WPF.Models.Accounts;
 using SupervisionApp.WPF.Models.Authenticators;
 using SupervisionApp.WPF.Models.ViewModelNavigators;
@@ -16,7 +18,6 @@ using SupervisionApp.WPF.ViewModels.Base;
 using SupervisionApp.WPF.ViewModels.Factories;
 using SupervisionApp.WPF.ViewModels.TabItems;
 using SupervisionApp.WPF.ViewModels.TabItems.Employees;
-using System;
 
 namespace SupervisionApp.WPF.DI
 {
@@ -52,13 +53,20 @@ namespace SupervisionApp.WPF.DI
                 })
                 .ConfigureServices((context, services) =>
                 {
-                    string commonConnectionString = context.Configuration.GetConnectionString("common-data");
-                    services.AddDbContext<CommonDataContext>(o => o.UseSqlite(commonConnectionString));
-                    services.AddSingleton<CommonDataContextFactory>(new CommonDataContextFactory(commonConnectionString));
+                    string commonDataConnectionString = context.Configuration.GetConnectionString("common-data");
+                    services.AddDbContext<CommonDataContext>(o => o.UseSqlServer(commonDataConnectionString));
+                    services.AddSingleton<CommonDataContextFactory>(new CommonDataContextFactory(commonDataConnectionString));
                     services.AddSingleton<IAuthenticationService, AuthenticationService>();
-                    services.AddSingleton<IAccountService, MockAccountService>();
-                    services.AddSingleton<IEmployeeService, MockEmployeeService>();
-                    services.AddSingleton<IFactoryService, MockFactoryService>();
+                    services.AddSingleton<IAccountService, AccountService>();
+                    services.AddSingleton<IDepartmentService, DepartmentService>();
+                    services.AddSingleton<IEmployeeFactoriesService, EmployeeFactoriesService>();
+                    services.AddSingleton<IEmployeeService, EmployeeService>();
+                    services.AddSingleton<IFactoryProductTypeService, FactoryProductTypeService>();
+                    services.AddSingleton<IFactoryService, FactoryService>();
+                    services.AddSingleton<IPostService, PostService>();
+                    services.AddSingleton<IProductTypeService, ProductTypeService>();
+                    services.AddSingleton<ISubdivisionDepartmentService, SubdivisionDepartmentService>();
+                    services.AddSingleton<ISubdivisionService, SubdivisionService>();
 
                     services.AddSingleton<IPasswordHasher<Account>, PasswordHasher<Account>>();
 

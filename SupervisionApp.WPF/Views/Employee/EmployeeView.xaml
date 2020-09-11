@@ -36,20 +36,23 @@
             </ProgressBar.Style>
         </ProgressBar>
 
-        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+        <StackPanel
+            Grid.Row="3"
+            Grid.Column="1"
+            Orientation="Horizontal">
             <Button
-            Margin="5"
-            Padding="10,5"
-            HorizontalAlignment="Right"
-            Command="{Binding SaveEntityCommand}"
-            CommandParameter="{Binding Path=Employee}"
-            Style="{StaticResource SaveItemButton}" />
+                Margin="5"
+                Padding="10,5"
+                HorizontalAlignment="Right"
+                Command="{Binding SaveEntityCommand}"
+                CommandParameter="{Binding Path=Employee}"
+                Style="{StaticResource SaveItemButton}" />
 
             <Button
-            Margin="5"
-            Padding="10,5"
-            HorizontalAlignment="Right"
-            Style="{StaticResource TabCloseButton}" />
+                Margin="5"
+                Padding="10,5"
+                HorizontalAlignment="Right"
+                Style="{StaticResource TabCloseButton}" />
         </StackPanel>
         <Grid Grid.Column="1">
             <Grid.Style>

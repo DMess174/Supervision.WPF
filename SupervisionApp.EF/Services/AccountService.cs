@@ -12,11 +12,8 @@ namespace SupervisionApp.EF.Services
 {
     public class AccountService : DataService<Account>, IAccountService
     {
-        private readonly CommonDataContextFactory _contextFactory;
-
         public AccountService(CommonDataContextFactory contextFactory) : base(contextFactory)
         {
-            _contextFactory = contextFactory;
         }
 
         public async Task<Account> GetByUsernameAsync(string username)

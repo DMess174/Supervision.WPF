@@ -16,7 +16,7 @@ namespace SupervisionApp.EF.DataContexts.Factories
         {
             DbContextOptionsBuilder<T> options = new DbContextOptionsBuilder<T>();
 
-            options.UseSqlite(_connectionString);
+            options.UseSqlServer(_connectionString);
 
             return (T)Activator.CreateInstance(typeof(T), options.Options);
         }
