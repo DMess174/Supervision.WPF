@@ -1,0 +1,41 @@
+﻿<UserControl
+    x:Class="SupervisionApp.WPF.Controls.Common.TabItemButtonControlBar"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SupervisionApp.WPF.Controls.Common"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <Border
+        Background="Transparent"
+        BorderBrush="{StaticResource WordBlueBrush}"
+        BorderThickness="1">
+        <Grid
+            Width="auto"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Center">
+            <Button
+                Width="30"
+                Height="30"
+                HorizontalAlignment="Center"
+                Command="{Binding AddTabCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TabControl}}"
+                Style="{StaticResource SaveItemButton}"
+                ToolTip="Добавить">
+                <materialDesign:PackIcon
+                    Width="15"
+                    Height="15"
+                    Kind="AccountPlus" />
+            </Button>
+
+            <Button
+                Height="30"
+                Margin="5"
+                Padding="10,5"
+                HorizontalAlignment="Right"
+                Style="{StaticResource TabCloseButton}" />
+        </Grid>
+    </Border>
+</UserControl>
