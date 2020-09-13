@@ -98,7 +98,7 @@
                                             <Style TargetType="{x:Type Image}">
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding Employee.PhotoPath}" Value="{x:Null}">
-                                                        <Setter Property="Source" Value="/Images/nophoto.png" />
+                                                        <Setter Property="Source" Value="/Resources/Images/nophoto.png" />
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>

@@ -14,7 +14,7 @@
 
     <UserControl.Background>
         <ImageBrush
-            ImageSource="/Images/Backgrounds/login-background.jpg"
+            ImageSource="/Resources/Images/Backgrounds/login-background.jpg"
             Opacity="0.5"
             Stretch="Fill" />
     </UserControl.Background>
@@ -56,7 +56,7 @@
                         Margin="0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
-                        Source="/Images/Logo/icon.ico">
+                        Source="/Resources/Images/Logo/icon.ico">
                         <Image.RenderTransform>
                             <ScaleTransform ScaleX="0.5" ScaleY="0.5" />
                         </Image.RenderTransform>
@@ -180,8 +180,7 @@
                     Command="{Binding LoginCommand}"
                     IsDefault="True"
                     Style="{StaticResource LoginButton}"
-                    ToolTip="Авторизация">
-                </Button>
+                    ToolTip="Авторизация" />
             </Grid>
         </Grid>
     </Border>

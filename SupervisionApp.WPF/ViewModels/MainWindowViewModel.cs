@@ -4,9 +4,8 @@ using SupervisionApp.WPF.Helpers;
 using SupervisionApp.WPF.Commands;
 using SupervisionApp.WPF.Models.ViewModelNavigators;
 using SupervisionApp.WPF.ViewModels.Factories;
-using SupervisionApp.WPF.Models.Authenticators;
-using System;
 using SupervisionApp.WPF.ViewModels.Base;
+using SupervisionApp.WPF.Models.Accounts;
 
 namespace SupervisionApp.WPF.ViewModels
 {
@@ -19,9 +18,9 @@ namespace SupervisionApp.WPF.ViewModels
         #region Private
 
         /// <summary>
-        /// Authentication property
+        /// Account status property
         /// </summary>
-        private readonly IAuthenticator _authenticator;
+        private readonly IAccountStore _accountStore;
 
         /// <summary>
         /// Switch VMs navigator
@@ -62,7 +61,7 @@ namespace SupervisionApp.WPF.ViewModels
 
         #region Public
 
-        public bool IsLoggedIn => _authenticator.IsLoggedIn;
+        public bool IsLoggedIn => _accountStore.IsLoggedIn;
 
         public ViewModelBase CurrentViewModel => _navigator.CurrentViewModel;
 
@@ -186,10 +185,7 @@ namespace SupervisionApp.WPF.ViewModels
         /// <summary>
         /// Default constructor
         /// </summary>
-        public MainWindowViewModel(Window window, 
-            IViewModelNavigator navigator, 
-            IViewModelFactory viewModelFactory, 
-            IAuthenticator authenticator) : base(authenticator)
+        public MainWindowViewModel(Window window, IViewModelNavigator navigator, IViewModelFactory viewModelFactory, IAccountStore accountStore)
         {
             _window = window;
 
@@ -241,17 +237,17 @@ namespace SupervisionApp.WPF.ViewModels
 
             _navigator = navigator;
             _viewModelFactory = viewModelFactory;
-            _authenticator = authenticator;
+            _accountStore = accountStore;
 
             _navigator.StateChanged += Navigator_StateChanged;
-            _authenticator.StateChanged += Authenticator_StateChanged;
+            _accountStore.StateChanged += Account_StateChanged;
 
             UpdateCurrentViewModelCommand = new UpdateCurrentViewModelCommand(navigator, _viewModelFactory);
 
             UpdateCurrentViewModelCommand.Execute(ViewType.Login);
         }
 
-        private void Authenticator_StateChanged()
+        private void Account_StateChanged()
         {
             OnPropertyChanged(nameof(IsLoggedIn));
         }

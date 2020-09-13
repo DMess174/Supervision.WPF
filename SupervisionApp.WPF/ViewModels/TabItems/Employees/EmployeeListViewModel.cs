@@ -1,5 +1,6 @@
 ﻿using SupervisionApp.CommonModel.Services;
 using SupervisionApp.WPF.Commands;
+using SupervisionApp.WPF.Models.Accounts;
 using SupervisionApp.WPF.Models.Authenticators;
 using SupervisionApp.WPF.Models.ViewModelNavigators;
 using SupervisionApp.WPF.ViewModels.Factories;
@@ -16,14 +17,10 @@ namespace SupervisionApp.WPF.ViewModels.TabItems.Employees
 
         public ObservableCollection<EmployeeCardViewModel> EmployeeCards { get; set; }
 
-        public EmployeeListViewModel(IAuthenticator authenticator, string header, ITabItemViewModelNavigator tabViewModelNavigator, 
-            MainViewModel mainViewModel, ITabItemViewModelFactory tabViewModelFactory, 
-            IEmployeeService employeeService = null) : base(authenticator, header, mainViewModel, tabViewModelNavigator)
+        public EmployeeListViewModel(IAccountStore accountStore, string header, IEmployeeService employeeService) : base(accountStore, header)
         {
             Header = "Список персонала";
             _employeeService = employeeService;
-
-            AddTabCommand = new AddTabItemCommand(tabViewModelFactory, mainViewModel);
 
             EmployeeCards = new ObservableCollection<EmployeeCardViewModel>();
 
@@ -33,8 +30,8 @@ namespace SupervisionApp.WPF.ViewModels.TabItems.Employees
             {
                 foreach (var item in items)
                 {
-                    EmployeeCards.Add(EmployeeCardViewModel.LoadViewModel(Authenticator, Authenticator.CurrentAccount.Employee.LastName, 
-                        item, TabViewModelNavigator, MainViewModel, tabViewModelFactory));
+                    EmployeeCards.Add(EmployeeCardViewModel.LoadViewModel(AccountStore, AccountStore.CurrentAccount.Employee.LastName, 
+                        item));
                 }
             }
         }

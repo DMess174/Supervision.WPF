@@ -7,13 +7,5 @@ namespace SupervisionApp.WPF.ViewModels.Base
 
     public abstract class ViewModelBase : ObservableObject
     {
-        public IAuthenticator Authenticator;
-
-        //public UserRoles CurrentRole { get => Authenticator.CurrentAccount.Role; }
-
-        public ViewModelBase(IAuthenticator authenticator)
-        {
-            Authenticator = authenticator;
-        }
     }
 }

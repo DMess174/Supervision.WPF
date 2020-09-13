@@ -1,4 +1,5 @@
-﻿using SupervisionApp.CommonModel.Models.Factories;
+﻿using SupervisionApp.CommonModel.Enums;
+using SupervisionApp.CommonModel.Models.Factories;
 using SupervisionApp.CommonModel.Models.OrganizationStructure;
 using System;
 
@@ -21,6 +22,8 @@ namespace SupervisionApp.WPF.Models.Accounts
             }
         }
 
+        public UserRoles CurrentRole => CurrentAccount.Role;
+
         private Factory _currentFactory;
 
         public Factory CurrentFactory
@@ -35,6 +38,8 @@ namespace SupervisionApp.WPF.Models.Accounts
                 StateChanged?.Invoke();
             }
         }
+
+        public bool IsLoggedIn => CurrentAccount != null;
 
         public event Action StateChanged;
     }

@@ -24,9 +24,9 @@ namespace SupervisionApp.WPF.ViewModels
 
 		public ICommand LoginCommand { get; }
 
-		public LoginViewModel(IAuthenticator authenticator, IViewModelRenavigator renavigator) : base(authenticator)
+		public LoginViewModel(IAuthenticator authenticator, IViewModelRenavigator renavigator)
 		{
-			ErrorMessageViewModel = new MessageViewModel(authenticator);
+			ErrorMessageViewModel = new MessageViewModel();
 			LoginCommand = new LoginCommand(this, authenticator, renavigator);
 		}
 

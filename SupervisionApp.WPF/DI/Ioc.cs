@@ -98,21 +98,16 @@ namespace SupervisionApp.WPF.DI
                     services.AddSingleton<CreateTabViewModel<EmployeeListViewModel>>(service =>
                     {
                         return (args) => new EmployeeListViewModel(
-                            Resolve<IAuthenticator>(),
+                            Resolve<IAccountStore>(),
                             "Персонал",
-                            Resolve<ITabItemViewModelNavigator>(),
-                            Resolve<MainViewModel>(),
-                            Resolve<ITabItemViewModelFactory>(),
                             Resolve<IEmployeeService>());
                     });
                     services.AddSingleton<CreateTabViewModel<EmployeeViewModel>>(service =>
                     {
                         return (args) => EmployeeViewModel.LoadViewModel(
-                            Resolve<IAuthenticator>(),
+                            Resolve<IAccountStore>(),
                             $"{args}",
                             Resolve<IEmployeeService>(),
-                            Resolve<ITabItemViewModelNavigator>(),
-                            Resolve<MainViewModel>(),
                             (Employee)args);
                     });
 

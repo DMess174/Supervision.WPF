@@ -1,4 +1,4 @@
-﻿using SupervisionApp.WPF.Models.Authenticators;
+﻿using SupervisionApp.WPF.Models.Accounts;
 using SupervisionApp.WPF.Models.ViewModelNavigators;
 using SupervisionApp.WPF.ViewModels.Base;
 
@@ -8,18 +8,15 @@ namespace SupervisionApp.WPF.ViewModels.TabItems
 
     public abstract class TabItemViewModelBase : ViewModelBase
     {
-        public MainViewModel MainViewModel;
-        public ITabItemViewModelNavigator TabViewModelNavigator;
-        public bool IsBusy { get; set; }
+        public IAccountStore AccountStore;
+        public bool IsBusy { get; set; } = false;
         public string Header { get; set; }
 
-        public TabItemViewModelBase(IAuthenticator authenticator,
-            string header, MainViewModel mainViewModel, ITabItemViewModelNavigator tabViewModelNavigator) : base(authenticator)
+        public TabItemViewModelBase(IAccountStore accountStore,
+            string header)
         {
-            IsBusy = false;
             Header = header;
-            MainViewModel = mainViewModel;
-            TabViewModelNavigator = tabViewModelNavigator;
+            AccountStore = accountStore;
         }
 
         public abstract bool CanClosed();

@@ -44,8 +44,6 @@ namespace SupervisionApp.WPF.Models.Authenticators
             }
         }
 
-        public bool IsLoggedIn => CurrentAccount != null;
-
         public event Action StateChanged;
 
         public async Task Login(string username, string password)

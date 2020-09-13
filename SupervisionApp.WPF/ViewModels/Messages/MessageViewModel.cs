@@ -1,5 +1,4 @@
-﻿using SupervisionApp.WPF.Models.Authenticators;
-using SupervisionApp.WPF.ViewModels.Base;
+﻿using SupervisionApp.WPF.ViewModels.Base;
 
 namespace SupervisionApp.WPF.ViewModels.Messages
 {
@@ -7,7 +6,7 @@ namespace SupervisionApp.WPF.ViewModels.Messages
     {
         private string _message;
 
-        public MessageViewModel(IAuthenticator authenticator) : base(authenticator)
+        public MessageViewModel()
         {
         }
 

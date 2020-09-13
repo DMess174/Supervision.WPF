@@ -13,6 +13,8 @@ namespace SupervisionApp.WPF.ViewModels
 {
     public class LoginFactoryViewModel : ViewModelBase
     {
+        private readonly IAuthenticator _authenticator;
+
         private readonly IFactoryService _factoryService;
 
         public bool IsBusy { get; set; }
@@ -33,10 +35,11 @@ namespace SupervisionApp.WPF.ViewModels
         public ICommand LoginFactoryCommand { get; }
 
         public LoginFactoryViewModel(IAuthenticator authenticator, IViewModelRenavigator loginRenavigator,
-            IViewModelRenavigator entryRenavigator, IFactoryService factoryService) : base(authenticator)
+            IViewModelRenavigator entryRenavigator, IFactoryService factoryService)
         {
+            _authenticator = authenticator;
             _factoryService = factoryService;
-            MessageViewModel = new MessageViewModel(authenticator);
+            MessageViewModel = new MessageViewModel();
             LoginFactoryCommand = new LoginFactoryCommand(authenticator, entryRenavigator);
             ViewLoginCommand = new LogoutCommand(authenticator, loginRenavigator);
         }
@@ -45,17 +48,17 @@ namespace SupervisionApp.WPF.ViewModels
             IViewModelRenavigator entryRenavigator, IFactoryService factoryService)
         {
             var vm = new LoginFactoryViewModel(authenticator, loginRenavigator, entryRenavigator, factoryService);
-            vm.LoadData(authenticator);
+            vm.LoadData();
             return vm;
         }
 
-        private async void LoadData(IAuthenticator authenticator)
+        private async void LoadData()
         {
             try
             {
                 Message = string.Empty;
                 IsBusy = true;
-                Factories = await _factoryService.GetEmployeeFactories(authenticator.CurrentAccount.Employee);
+                Factories = await _factoryService.GetEmployeeFactories(_authenticator.CurrentAccount.Employee);
                 if(Factories == null)
                 {
                     Message = "Заводы не найдены";
@@ -63,6 +66,7 @@ namespace SupervisionApp.WPF.ViewModels
                 else
                 {
                     Factory = Factories.First();
+                    LoginFactoryCommand.CanExecute(Factory);
                 }
             }
             finally

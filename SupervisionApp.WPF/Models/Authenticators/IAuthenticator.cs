@@ -11,7 +11,6 @@ namespace SupervisionApp.WPF.Models.Authenticators
     {
         Account CurrentAccount { get; }
         Factory CurrentFactory { get; }
-        bool IsLoggedIn { get; }
 
         event Action StateChanged;
 

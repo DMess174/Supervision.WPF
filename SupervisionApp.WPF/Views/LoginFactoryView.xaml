@@ -12,7 +12,7 @@
     mc:Ignorable="d">
     <UserControl.Background>
         <ImageBrush
-            ImageSource="/Images/Backgrounds/login-background.jpg"
+            ImageSource="/Resources/Images/Backgrounds/login-background.jpg"
             Opacity="0.5"
             Stretch="Fill" />
     </UserControl.Background>
@@ -54,7 +54,7 @@
                         Margin="0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
-                        Source="/Images/Logo/icon.ico">
+                        Source="/Resources/Images/Logo/icon.ico">
                         <Image.RenderTransform>
                             <ScaleTransform ScaleX="0.5" ScaleY="0.5" />
                         </Image.RenderTransform>
@@ -160,11 +160,10 @@
                         Grid.Column="2"
                         Height="auto"
                         Margin="30,0"
-                        IsCancel="True"
                         Command="{Binding ViewLoginCommand}"
+                        IsCancel="True"
                         Style="{StaticResource LogoutButton}"
-                        ToolTip="Назад">
-                    </Button>
+                        ToolTip="Назад" />
 
                     <Button
                         Grid.Row="3"
@@ -175,8 +174,7 @@
                         CommandParameter="{Binding Factory}"
                         IsDefault="True"
                         Style="{StaticResource LoginButton}"
-                        ToolTip="Авторизация">
-                    </Button>
+                        ToolTip="Авторизация" />
                 </StackPanel>
             </Grid>
         </Grid>

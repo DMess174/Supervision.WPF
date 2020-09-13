@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Images\Backgrounds\login-background.jpg" />
-    <None Remove="Images\Logo\icon.ico" />
-    <None Remove="Images\nophoto.png" />
+    <None Remove="Resources\Images\Backgrounds\login-background.jpg" />
+    <None Remove="Resources\Images\Logo\icon.ico" />
+    <None Remove="Resources\Images\nophoto.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,13 +29,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Images\Backgrounds\login-background.jpg">
+    <Resource Include="Resources\Images\Backgrounds\login-background.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\Logo\icon.ico">
+    <Resource Include="Resources\Images\Logo\icon.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\nophoto.png">
+    <Resource Include="Resources\Images\nophoto.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

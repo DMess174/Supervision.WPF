@@ -43,6 +43,7 @@ namespace SupervisionApp.WPF
                 .ConfigureServices((context, services) =>
                 {
                     string commonDataConnectionString = context.Configuration.GetConnectionString("common-data");
+                    string factoryDataConnectionString = context.Configuration.GetConnectionString("kornet-data");
                     services.AddDbContext<CommonDataContext>(o => o.UseSqlServer(commonDataConnectionString));
                     services.AddSingleton<CommonDataContextFactory>(new CommonDataContextFactory(commonDataConnectionString));
                     services.AddSingleton<IAuthenticationService, AuthenticationService>();
@@ -87,21 +88,16 @@ namespace SupervisionApp.WPF
                     services.AddSingleton<CreateTabViewModel<EmployeeListViewModel>>(service =>
                     {
                         return (args) => new EmployeeListViewModel(
-                            service.GetRequiredService<IAuthenticator>(),
+                            service.GetRequiredService<IAccountStore>(),
                             "Персонал",
-                            service.GetRequiredService<ITabItemViewModelNavigator>(),
-                            service.GetRequiredService<MainViewModel>(),
-                            service.GetRequiredService<ITabItemViewModelFactory>(),
                             service.GetRequiredService<IEmployeeService>());
                     });
                     services.AddSingleton<CreateTabViewModel<EmployeeViewModel>>(service =>
                     {
                         return (args) => EmployeeViewModel.LoadViewModel(
-                            service.GetRequiredService<IAuthenticator>(),
+                            service.GetRequiredService<IAccountStore>(),
                             $"{args}",
                             service.GetRequiredService<IEmployeeService>(),
-                            service.GetRequiredService<ITabItemViewModelNavigator>(),
-                            service.GetRequiredService<MainViewModel>(),
                             (Employee)args);
                     });
 
@@ -123,7 +119,7 @@ namespace SupervisionApp.WPF
             Current.MainWindow.DataContext = new MainWindowViewModel(Current.MainWindow,
                 _host.Services.GetRequiredService<IViewModelNavigator>(),
                 _host.Services.GetRequiredService<IViewModelFactory>(),
-                _host.Services.GetRequiredService<IAuthenticator>());
+                _host.Services.GetRequiredService<IAccountStore>());
             Current.MainWindow.Show();
 
             base.OnStartup(e);

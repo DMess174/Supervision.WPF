@@ -1,6 +1,7 @@
 ﻿using SupervisionApp.CommonModel.Models.Products;
 using SupervisionApp.CommonModel.Services;
 using SupervisionApp.WPF.Commands;
+using SupervisionApp.WPF.Models.Accounts;
 using SupervisionApp.WPF.Models.Authenticators;
 using SupervisionApp.WPF.Models.ViewModelNavigators;
 using SupervisionApp.WPF.ViewModels.Base;
@@ -15,18 +16,15 @@ namespace SupervisionApp.WPF.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+        private readonly IAccountStore _accountStore;
         private readonly IEmployeeService _employeeService;
         private readonly ITabItemViewModelFactory _tabViewModelFactory;
 
-        public ITabItemViewModelNavigator TabViewModelNavigator { get; set; }
+        private readonly ITabItemViewModelNavigator _tabViewModelNavigator;
 
-        public TabItemViewModelBase CurrentTab
-        {
-            get => TabViewModelNavigator.CurrentTab;
-            set => TabViewModelNavigator.CurrentTab = value;
-        }
+        public TabItemViewModelBase CurrentTab { get; set; }
 
-        public ObservableCollection<TabItemViewModelBase> TabItems => TabViewModelNavigator.TabItems;
+        public ObservableCollection<TabItemViewModelBase> Tabs => _tabViewModelNavigator.TabItems;
 
         public ICommand OpenTabCommand { get; }
 
@@ -34,39 +32,39 @@ namespace SupervisionApp.WPF.ViewModels
 
         public IList<ProductType> ProductTypes { get; private set; }
 
-        public ObservableCollection<TabItemViewModelBase> Tabs { get; set; }
 
-        public MainViewModel(IAuthenticator authenticator, ITabItemViewModelNavigator tabViewModelNavigator, 
-            IEmployeeService employeeService = null, ITabItemViewModelFactory tabViewModelFactory = null) : base(authenticator)
+        public MainViewModel(IAccountStore accountStore, ITabItemViewModelNavigator tabViewModelNavigator, 
+            IEmployeeService employeeService, ITabItemViewModelFactory tabViewModelFactory)
         {
+            _accountStore = accountStore;
+
             _employeeService = employeeService;
 
             _tabViewModelFactory = tabViewModelFactory;
 
-            TabViewModelNavigator = tabViewModelNavigator;
+            _tabViewModelNavigator = tabViewModelNavigator;
 
-            TabViewModelNavigator.StateChanged += TabViewModelNavigator_StateChanged;
+            _tabViewModelNavigator.StateChanged += TabViewModelNavigator_StateChanged;
 
-            OpenTabCommand = new AddTabItemCommand(_tabViewModelFactory, this);
+            OpenTabCommand = new AddTabItemCommand(_tabViewModelFactory, _tabViewModelNavigator);
 
-            CloseTabCommand = new CloseTabItemCommand(TabViewModelNavigator);
+            CloseTabCommand = new CloseTabItemCommand(_tabViewModelNavigator);
 
-            TabViewModelNavigator.TabItems = new ObservableCollection<TabItemViewModelBase>()
+            _tabViewModelNavigator.TabItems = new ObservableCollection<TabItemViewModelBase>()
             {
-                new EmployeeListViewModel(Authenticator, "Персонал", 
-                TabViewModelNavigator, this, _tabViewModelFactory, _employeeService),
+                new EmployeeListViewModel(_accountStore, "Персонал", _employeeService),
             };
-            CurrentTab = TabViewModelNavigator.TabItems[0];
+            CurrentTab = Tabs[0];
 
             ProductTypes = new List<ProductType>();
-            foreach (var i in Authenticator.CurrentFactory.ProductTypes)
+            foreach (var i in _accountStore.CurrentFactory.ProductTypes)
                 ProductTypes.Add(i.ProductType);
         }
 
         private void TabViewModelNavigator_StateChanged()
         {
+            OnPropertyChanged(nameof(Tabs));
             OnPropertyChanged(nameof(CurrentTab));
-            OnPropertyChanged(nameof(TabItems));
         }
 
 

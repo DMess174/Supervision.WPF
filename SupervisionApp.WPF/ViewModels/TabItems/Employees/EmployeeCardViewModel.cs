@@ -1,9 +1,5 @@
 ﻿using SupervisionApp.CommonModel.Models.OrganizationStructure;
-using SupervisionApp.WPF.Commands;
-using SupervisionApp.WPF.Models.Authenticators;
-using SupervisionApp.WPF.Models.ViewModelNavigators;
-using SupervisionApp.WPF.ViewModels.Factories;
-using System.Windows.Input;
+using SupervisionApp.WPF.Models.Accounts;
 
 namespace SupervisionApp.WPF.ViewModels.TabItems.Employees
 {
@@ -11,21 +7,14 @@ namespace SupervisionApp.WPF.ViewModels.TabItems.Employees
     {
         public Employee Employee { get; set; }
 
-        public ICommand EditItemCommand { get; }
-
-        public EmployeeCardViewModel(IAuthenticator authenticator, string header, Employee employee, 
-            ITabItemViewModelNavigator tabViewModelNavigator, MainViewModel mainViewModel, 
-            ITabItemViewModelFactory tabViewModelFactory) : base(authenticator, header, mainViewModel, tabViewModelNavigator)
+        public EmployeeCardViewModel(IAccountStore accountStore, string header, Employee employee) : base(accountStore, header)
         {
             Employee = employee;
-
-            EditItemCommand = new AddTabItemCommand(tabViewModelFactory, mainViewModel);
         }
 
-        public static EmployeeCardViewModel LoadViewModel(IAuthenticator authenticator, string header, Employee employee, 
-            ITabItemViewModelNavigator tabViewModelNavigator, MainViewModel mainViewModel, ITabItemViewModelFactory tabViewModelFactory)
+        public static EmployeeCardViewModel LoadViewModel(IAccountStore accountStore, string header, Employee employee)
         {
-            var vm = new EmployeeCardViewModel(authenticator, header, employee, tabViewModelNavigator, mainViewModel, tabViewModelFactory);
+            var vm = new EmployeeCardViewModel(accountStore, header, employee);
 
             return vm;
         }

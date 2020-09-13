@@ -15,7 +15,7 @@
     Activated="AppWindow_Activated"
     AllowsTransparency="True"
     Deactivated="AppWindow_Deactivated"
-    Icon="../Images/Logo/icon.ico"
+    Icon="../Resources/Images/Logo/icon.ico"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
@@ -92,7 +92,7 @@
 
                                         <!--  Icon  -->
                                         <Button Command="{Binding MenuCommand}" Style="{StaticResource SystemIconButton}">
-                                            <Image Source="/Images/Logo/icon.ico" />
+                                            <Image Source="/Resources/Images/Logo/icon.ico" />
                                         </Button>
 
                                         <!--  Title  -->
@@ -244,7 +244,7 @@
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 HorizontalScrollBarVisibility="Disabled"
-                VerticalScrollBarVisibility="Auto">
+                VerticalScrollBarVisibility="Disabled">
                 <ContentControl Content="{Binding CurrentViewModel}" />
             </ScrollViewer>
 
