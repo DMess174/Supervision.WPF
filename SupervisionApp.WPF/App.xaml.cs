@@ -102,7 +102,6 @@ namespace SupervisionApp.WPF
                     });
 
                     services.AddSingleton<IViewModelNavigator, ViewModelNavigator>();
-                    services.AddSingleton<ITabItemViewModelNavigator, TabItemViewModelNavigator>();
 
                     services.AddSingleton<IAuthenticator, Authenticator>();
                     services.AddSingleton<IAccountStore, AccountStore>();

@@ -63,11 +63,6 @@ namespace SupervisionApp.WPF.ViewModels
                 {
                     Message = "Заводы не найдены";
                 }
-                else
-                {
-                    Factory = Factories.First();
-                    LoginFactoryCommand.CanExecute(Factory);
-                }
             }
             finally
             {

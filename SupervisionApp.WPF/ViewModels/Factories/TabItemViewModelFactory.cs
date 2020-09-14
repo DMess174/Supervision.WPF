@@ -1,5 +1,4 @@
-﻿using SupervisionApp.WPF.Models.ViewModelNavigators;
-using SupervisionApp.WPF.ViewModels.TabItems;
+﻿using SupervisionApp.WPF.ViewModels.TabItems;
 using SupervisionApp.WPF.ViewModels.TabItems.Employees;
 using System;
 
@@ -24,7 +23,7 @@ namespace SupervisionApp.WPF.ViewModels.Factories
             {
                 TabItemViewType.EmployeeList => _createEmployeeListViewModel(),
                 TabItemViewType.EmployeeEdit => _createEmployeeViewModel(args),
-                _ => throw new ArgumentException("The ViewType does not have a ViewModel.", "viewType"),
+                _ => throw new ArgumentException("The TabViewType does not have a ViewModel.", "tabViewType"),
             };
         }
     }

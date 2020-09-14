@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using SupervisionApp.CommonModel.Exceptions;
-using SupervisionApp.CommonModel.Models.Factories;
 using SupervisionApp.CommonModel.Models.OrganizationStructure;
 using System.Threading.Tasks;
 

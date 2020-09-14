@@ -16,7 +16,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            <Style TargetType="{x:Type MenuItem}">
+            <Style x:Key="HorizontalMenuItem" TargetType="{x:Type MenuItem}">
                 <Setter Property="Foreground" Value="{StaticResource ForegroundVeryDarkBrush}" />
                 <Setter Property="VerticalAlignment" Value="Center" />
                 <Setter Property="Height" Value="25" />
@@ -214,6 +214,14 @@
         x:Key="Horizont"
         BasedOn="{StaticResource MaterialDesignMenu}"
         TargetType="{x:Type Menu}">
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0.5, 0" EndPoint="0.5, 1">
+                    <GradientStop Offset="1" Color="LightGray" />
+                    <GradientStop Color="White" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
         <Style.Resources>
             <Style
                 x:Key="horiz"

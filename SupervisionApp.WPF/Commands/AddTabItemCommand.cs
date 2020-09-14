@@ -1,20 +1,20 @@
 ﻿using SupervisionApp.ModelAPI;
 using SupervisionApp.WPF.Commands.Base;
 using SupervisionApp.WPF.Models.ViewModelNavigators;
-using SupervisionApp.WPF.ViewModels;
 using SupervisionApp.WPF.ViewModels.Factories;
+using SupervisionApp.WPF.ViewModels.TabItems;
 
 namespace SupervisionApp.WPF.Commands
 {
     public class AddTabItemCommand : CommandBase
     {
-        private readonly ITabItemViewModelNavigator _tabItemViewModelNavigator;
+        private readonly TabItemCollectionViewModel _tabsViewModel;
         private readonly ITabItemViewModelFactory _tabViewModelFactory;
 
-        public AddTabItemCommand(ITabItemViewModelFactory tabViewModelFactory, ITabItemViewModelNavigator tabItemViewModelNavigator)
+        public AddTabItemCommand(ITabItemViewModelFactory tabViewModelFactory, TabItemCollectionViewModel tabsViewModel)
         {
             _tabViewModelFactory = tabViewModelFactory;
-            _tabItemViewModelNavigator = tabItemViewModelNavigator;
+            _tabsViewModel = tabsViewModel;
         }
 
         public override bool CanExecute(object parameter) => true;
@@ -39,7 +39,7 @@ namespace SupervisionApp.WPF.Commands
 
         public void OpenTab(TabItemViewType tabViewType, BaseEntity entity = null)
         {
-            _tabItemViewModelNavigator.OpenTab(_tabViewModelFactory.CreateTabViewModel(tabViewType, entity));
+            _tabsViewModel.OpenTab(_tabViewModelFactory.CreateTabViewModel(tabViewType, entity));
         }
     }
 }

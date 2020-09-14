@@ -53,11 +53,5 @@ namespace SupervisionApp.EF.Services
                 return entity;
             }
         }
-
-        public bool CheckFactoryPermission(Account account, Factory factory)
-        {
-            bool result = account.Employee.EmployeeFactories.Any(i => i.Factory.Id == factory.Id);
-            return result;
-        }
     }
 }

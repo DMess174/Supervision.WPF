@@ -35,7 +35,7 @@
                                     BorderThickness="1,0,1,1"
                                     CornerRadius="0 0 8 8">
 
-                                    <ContentPresenter 
+                                    <ContentPresenter
                                         Width="auto"
                                         Margin="5"
                                         HorizontalAlignment="Center"

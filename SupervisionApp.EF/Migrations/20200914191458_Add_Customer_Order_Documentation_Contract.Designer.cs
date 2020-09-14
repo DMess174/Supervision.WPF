@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SupervisionApp.EF.DataContexts;
 
 namespace SupervisionApp.EF.Migrations
 {
     [DbContext(typeof(CommonDataContext))]
-    partial class CommonDataContextModelSnapshot : ModelSnapshot
+    [Migration("20200914191458_Add_Customer_Order_Documentation_Contract")]
+    partial class Add_Customer_Order_Documentation_Contract
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

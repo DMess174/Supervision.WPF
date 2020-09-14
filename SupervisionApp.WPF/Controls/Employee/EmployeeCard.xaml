@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:converters="clr-namespace:SupervisionApp.WPF.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:employeevm="clr-namespace:SupervisionApp.WPF.Models.ViewModelNavigators"
+    xmlns:employeevm="clr-namespace:SupervisionApp.WPF.ViewModels.Factories"
     xmlns:local="clr-namespace:SupervisionApp.WPF.Controls.Employee"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"

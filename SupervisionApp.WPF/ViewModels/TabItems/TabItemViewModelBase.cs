@@ -1,5 +1,4 @@
 ﻿using SupervisionApp.WPF.Models.Accounts;
-using SupervisionApp.WPF.Models.ViewModelNavigators;
 using SupervisionApp.WPF.ViewModels.Base;
 
 namespace SupervisionApp.WPF.ViewModels.TabItems

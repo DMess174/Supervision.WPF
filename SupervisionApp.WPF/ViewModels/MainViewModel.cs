@@ -1,9 +1,8 @@
-﻿using SupervisionApp.CommonModel.Models.Products;
+﻿using SupervisionApp.CommonModel.Enums;
+using SupervisionApp.CommonModel.Models.Products;
 using SupervisionApp.CommonModel.Services;
 using SupervisionApp.WPF.Commands;
 using SupervisionApp.WPF.Models.Accounts;
-using SupervisionApp.WPF.Models.Authenticators;
-using SupervisionApp.WPF.Models.ViewModelNavigators;
 using SupervisionApp.WPF.ViewModels.Base;
 using SupervisionApp.WPF.ViewModels.Factories;
 using SupervisionApp.WPF.ViewModels.TabItems;
@@ -20,11 +19,20 @@ namespace SupervisionApp.WPF.ViewModels
         private readonly IEmployeeService _employeeService;
         private readonly ITabItemViewModelFactory _tabViewModelFactory;
 
-        private readonly ITabItemViewModelNavigator _tabViewModelNavigator;
+        public UserRoles CurrentRole => _accountStore.CurrentRole;
+        public TabItemCollectionViewModel TabsViewModel { get; }
 
-        public TabItemViewModelBase CurrentTab { get; set; }
+        public ObservableCollection<TabItemViewModelBase> Tabs => TabsViewModel.Tabs;
 
-        public ObservableCollection<TabItemViewModelBase> Tabs => _tabViewModelNavigator.TabItems;
+        public TabItemViewModelBase CurrentTab
+        {
+            get => TabsViewModel.CurrentTab;
+            set
+            {
+                TabsViewModel.CurrentTab = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ICommand OpenTabCommand { get; }
 
@@ -33,8 +41,7 @@ namespace SupervisionApp.WPF.ViewModels
         public IList<ProductType> ProductTypes { get; private set; }
 
 
-        public MainViewModel(IAccountStore accountStore, ITabItemViewModelNavigator tabViewModelNavigator, 
-            IEmployeeService employeeService, ITabItemViewModelFactory tabViewModelFactory)
+        public MainViewModel(IAccountStore accountStore, IEmployeeService employeeService, ITabItemViewModelFactory tabViewModelFactory)
         {
             _accountStore = accountStore;
 
@@ -42,32 +49,29 @@ namespace SupervisionApp.WPF.ViewModels
 
             _tabViewModelFactory = tabViewModelFactory;
 
-            _tabViewModelNavigator = tabViewModelNavigator;
-
-            _tabViewModelNavigator.StateChanged += TabViewModelNavigator_StateChanged;
-
-            OpenTabCommand = new AddTabItemCommand(_tabViewModelFactory, _tabViewModelNavigator);
-
-            CloseTabCommand = new CloseTabItemCommand(_tabViewModelNavigator);
-
-            _tabViewModelNavigator.TabItems = new ObservableCollection<TabItemViewModelBase>()
+            TabsViewModel = new TabItemCollectionViewModel
             {
+                Tabs = new ObservableCollection<TabItemViewModelBase>()
+                {
                 new EmployeeListViewModel(_accountStore, "Персонал", _employeeService),
+                }
             };
             CurrentTab = Tabs[0];
+
+            TabsViewModel.StateChanged += OnCurrentTab_StateChanged;
+
+            OpenTabCommand = new AddTabItemCommand(_tabViewModelFactory, TabsViewModel);
+
+            CloseTabCommand = new CloseTabItemCommand(TabsViewModel);
 
             ProductTypes = new List<ProductType>();
             foreach (var i in _accountStore.CurrentFactory.ProductTypes)
                 ProductTypes.Add(i.ProductType);
         }
 
-        private void TabViewModelNavigator_StateChanged()
+        private void OnCurrentTab_StateChanged()
         {
-            OnPropertyChanged(nameof(Tabs));
             OnPropertyChanged(nameof(CurrentTab));
         }
-
-
-
     }
 }
