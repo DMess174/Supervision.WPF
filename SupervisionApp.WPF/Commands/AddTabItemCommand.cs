@@ -1,6 +1,5 @@
 ﻿using SupervisionApp.ModelAPI;
 using SupervisionApp.WPF.Commands.Base;
-using SupervisionApp.WPF.Models.ViewModelNavigators;
 using SupervisionApp.WPF.ViewModels.Factories;
 using SupervisionApp.WPF.ViewModels.TabItems;
 

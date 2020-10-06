@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace Supervision.CommonModel.Models.Documentation
 {
     /// <summary>
-    /// Сопосавление типа покрытия с НТД
+    /// Сопоставление типа покрытия с НТД
     /// </summary>
     public class CoatingTypeDocument : BaseEntity
     {

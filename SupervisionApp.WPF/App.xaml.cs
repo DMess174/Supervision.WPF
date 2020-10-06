@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Supervision.CommonModel.Services;
+using SupervisionApp.CommonModel.Models.Factories;
 using SupervisionApp.CommonModel.Models.OrganizationStructure;
 using SupervisionApp.CommonModel.Services;
 using SupervisionApp.EF.DataContexts;
@@ -18,6 +19,7 @@ using SupervisionApp.WPF.ViewModels.Base;
 using SupervisionApp.WPF.ViewModels.Factories;
 using SupervisionApp.WPF.ViewModels.TabItems;
 using SupervisionApp.WPF.ViewModels.TabItems.Employees;
+using SupervisionApp.WPF.ViewModels.TabItems.Orders;
 using SupervisionApp.WPF.Views;
 using System.Windows;
 
@@ -32,7 +34,7 @@ namespace SupervisionApp.WPF
             _host = CreateHostBuilder().Build();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args = null)
+        private static IHostBuilder CreateHostBuilder(string[] args = null)
         {
             return Host.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration(c =>
@@ -57,6 +59,8 @@ namespace SupervisionApp.WPF
                     services.AddSingleton<IProductTypeService, ProductTypeService>();
                     services.AddSingleton<ISubdivisionDepartmentService, SubdivisionDepartmentService>();
                     services.AddSingleton<ISubdivisionService, SubdivisionService>();
+                    services.AddSingleton<ISpecificationService, SpecificationService>();
+                    services.AddSingleton<IPIDService, PIDService>();
 
                     services.AddSingleton<IPasswordHasher<Account>, PasswordHasher<Account>>();
 
@@ -99,6 +103,13 @@ namespace SupervisionApp.WPF
                             $"{args}",
                             service.GetRequiredService<IEmployeeService>(),
                             (Employee)args);
+                    });
+                    services.AddSingleton<CreateTabViewModel<SpecificationListViewModel>>(service =>
+                    {
+                        return (args) => SpecificationListViewModel.LoadViewModel(
+                            service.GetRequiredService<IAccountStore>(),
+                            "Спецификации",
+                            service.GetRequiredService<ISpecificationService>());
                     });
 
                     services.AddSingleton<IViewModelNavigator, ViewModelNavigator>();

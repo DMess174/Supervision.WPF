@@ -6,7 +6,6 @@ using SupervisionApp.WPF.Models.ViewModelNavigators;
 using SupervisionApp.WPF.ViewModels.Base;
 using SupervisionApp.WPF.ViewModels.Messages;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Input;
 
 namespace SupervisionApp.WPF.ViewModels

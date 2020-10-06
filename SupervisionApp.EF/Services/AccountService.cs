@@ -1,11 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SupervisionApp.CommonModel.Models.Factories;
 using SupervisionApp.CommonModel.Models.OrganizationStructure;
 using SupervisionApp.CommonModel.Services;
 using SupervisionApp.EF.DataContexts;
 using SupervisionApp.EF.DataContexts.Factories;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace SupervisionApp.EF.Services

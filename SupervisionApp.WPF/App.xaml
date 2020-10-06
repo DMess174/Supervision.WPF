@@ -6,6 +6,8 @@
     xmlns:employeeviews="clr-namespace:SupervisionApp.WPF.Views.Employee"
     xmlns:employyeecontrols="clr-namespace:SupervisionApp.WPF.Controls.Employee"
     xmlns:local="clr-namespace:SupervisionApp.WPF"
+    xmlns:orderviewmodels="clr-namespace:SupervisionApp.WPF.ViewModels.TabItems.Orders"
+    xmlns:orderviews="clr-namespace:SupervisionApp.WPF.Views.Orders"
     xmlns:viewmodels="clr-namespace:SupervisionApp.WPF.ViewModels"
     xmlns:views="clr-namespace:SupervisionApp.WPF.Views">
     <Application.Resources>
@@ -48,6 +50,10 @@
 
             <DataTemplate DataType="{x:Type employeeviewmodels:EmployeeListViewModel}">
                 <employeeviews:EmployeeListView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type orderviewmodels:SpecificationListViewModel}">
+                <orderviews:SpecificationListView />
             </DataTemplate>
         </ResourceDictionary>
 

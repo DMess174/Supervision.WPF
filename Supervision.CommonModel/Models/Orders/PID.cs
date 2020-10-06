@@ -1,10 +1,10 @@
-﻿using Supervision.CommonModel.Enums;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using Supervision.CommonModel.Enums;
 using SupervisionApp.CommonModel.Models.Factories;
 using SupervisionApp.CommonModel.Models.Products;
 using SupervisionApp.ModelAPI;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Supervision.CommonModel.Models.Orders
 {
@@ -13,7 +13,7 @@ namespace Supervision.CommonModel.Models.Orders
         [Required]
         [MaxLength(30)]
         public string Number { get; set; }
-        public int Amount { get; set; }
+        public int ProductQuantity { get; set; }
 
         [Required]
         [MaxLength(4000)]

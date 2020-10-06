@@ -72,9 +72,29 @@
 
                 <Button
                     Margin="10"
-                    Command="{Binding EditItemCommand}"
-                    Content="Просмотр"
+                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}, Path=DataContext.OpenTabCommand}"
                     Style="{StaticResource MaterialDesignRaisedButton}">
+                    <Button.Content>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <materialDesign:PackIcon
+                        Grid.Column="0"
+                        VerticalAlignment="Stretch"
+                        Kind="PresenceEnter">
+                                <materialDesign:PackIcon.RenderTransform>
+                                    <ScaleTransform CenterY="8" ScaleX="1" ScaleY="1" />
+                                </materialDesign:PackIcon.RenderTransform>
+                            </materialDesign:PackIcon>
+                            <TextBlock
+                        Grid.Column="1"
+                        Margin="5,0"
+                        FontSize="{StaticResource FontSizeLarge}"
+                        Text="Просмотр" />
+                        </Grid>
+                    </Button.Content>
                     <Button.CommandParameter>
                         <MultiBinding Converter="{StaticResource MulticommandParameterConverter}">
                             <Binding Source="{x:Static employeevm:TabItemViewType.EmployeeEdit}" />
